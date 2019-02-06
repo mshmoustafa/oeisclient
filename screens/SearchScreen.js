@@ -17,7 +17,7 @@ import Utility from '../lib/Utility';
 import Card from '../components/Card';
 // import {Picker, PickerOptions} from 'react-native-picker';
 
-export default class HomeScreen extends React.Component {
+export default class SearchScreen extends React.Component {
     static navigationOptions = {
         title: "Search"
     };
@@ -29,7 +29,7 @@ export default class HomeScreen extends React.Component {
         currentPage: 0,
         /** @type {OEISResponse} */
         searchResults: undefined,
-        pageSelectorVisible: false,
+        pagePickerVisible: false,
         activityIndicatorVisible: false,
     }
 
@@ -38,9 +38,9 @@ export default class HomeScreen extends React.Component {
         if (this.state.searchResults === undefined) {
             body = this._introView();
         } else {
-            body = this._searchResultsListView(this.state.searchResults.results);
+            body = this._searchResultsListView(this.state.searchResults.results, this.state.searchResults.count);
         }
-        let pageSelector = this._pagePicker();
+        let pagePicker = this._pagePicker();
         return (
             <View
                 style={{
@@ -91,7 +91,7 @@ export default class HomeScreen extends React.Component {
                 <Modal
                     animationType="fade"
                     transparent={true}
-                    visible={this.state.pageSelectorVisible}
+                    visible={this.state.pagePickerVisible}
                     >
                     <View style={{
                             flex: 1,
@@ -103,8 +103,8 @@ export default class HomeScreen extends React.Component {
                         <View style={{backgroundColor: "white"}}>
                             <Button
                                 title="Done"
-                                onPress={() => {this._pageSelectorDismissed();}} />
-                            {pageSelector}
+                                onPress={() => {this._pagePickerDismissed();}} />
+                            {pagePicker}
                         </View>
                     </View>
                 </Modal>
@@ -114,7 +114,7 @@ export default class HomeScreen extends React.Component {
 
     _setModalVisible(visible) {
         console.log("in _setModalVisible");
-        this.setState({pageSelectorVisible: visible});
+        this.setState({pagePickerVisible: visible});
     }
 
     _searchButtonPressed = () => {
@@ -123,9 +123,9 @@ export default class HomeScreen extends React.Component {
         this._submitQuery(this.state.text, 0);
     }
 
-    _pageSelectorButtonPressed = () => {
-        console.log("in _pageSelectorButtonPressed");
-        this.setState(previousState => ({pageSelectorVisible: true}));
+    _pagePickerButtonPressed = () => {
+        console.log("in _pagePickerButtonPressed");
+        this.setState(previousState => ({pagePickerVisible: true}));
         // let thePicker = <Picker     style={{         height: 300     }}
         // showDuration={300}     showMask={true}     pickerData={["Java,
         // JavaScript"]}//picker`s value List     selectedValue={"Java"}//default to be
@@ -158,7 +158,7 @@ export default class HomeScreen extends React.Component {
             console.log("    " + results.greeting);
             console.log("    Retrieved " + results.count + " results.");
             console.log("    Start: " + results.start);
-            let currentPage = this.computeCurrentPage(results.start, 10);
+            let currentPage = this._computeCurrentPage(results.start, 10);
             console.log("    Computed current page: " + currentPage.toString());
             setTimeout(() => {
                 this.setState(previousState => ({
@@ -198,7 +198,11 @@ export default class HomeScreen extends React.Component {
         );
     }
 
-    _searchResultsListView = (searchResults) => {
+    /**
+     * @param searchResults {Array<number>}
+     * @param numberOfHits {number}
+     */
+    _searchResultsListView = (searchResults, numberOfHits) => {
         console.log("in _searchResultsListView");
         console.log("    making the search results list view...");
         if (searchResults === undefined || searchResults === null) {
@@ -210,17 +214,17 @@ export default class HomeScreen extends React.Component {
         searchResults.forEach(element => {
             listView.push(this._searchResultCard(element));
         });
-        let pageSelectorString = "Page " + this.state.currentPage + " of ???";
+        let pagePickerString = "Page " + this.state.currentPage + " of " + this._computeNumberOfPages(numberOfHits);
         return (
             <View>
-                <Text>
-                    Retrieved {this.state.searchResults.count}
-                    results.
+                <Text
+                    style={[styles.minorText, {textAlign: "left", marginBottom: 18}]}>
+                    Retrieved {this.state.searchResults.count} results.
                 </Text>
                 {listView}
                 <Button
-                    title={pageSelectorString}
-                    onPress={this._pageSelectorButtonPressed}/>
+                    title={pagePickerString}
+                    onPress={this._pagePickerButtonPressed}/>
                 <View style={{
                         height: 50
                     }}>
@@ -250,32 +254,32 @@ export default class HomeScreen extends React.Component {
         if (this.state.searchResults === undefined || this.state.searchResults === null) {
             return undefined;
         }
-        let numberOfPages = this.computeNumberOfPages(this.state.searchResults.count);
-        // let currentPage = this.computeCurrentPage(this.state.searchResults.start, 10);
+        let numberOfPages = this._computeNumberOfPages(this.state.searchResults.count);
+        // let currentPage = this._computeCurrentPage(this.state.searchResults.start, 10);
         let pagePickerItems = [];
         for (let i = 1; i <= numberOfPages; i++) {
             pagePickerItems.push(
                 <Picker.Item key={i} label={i.toString()} value={i}/>
             );
         }
-        let pageSelector;
-        if (this.state.pageSelectorVisible === true) {
-            pageSelector = <Picker
+        let pagePicker;
+        if (this.state.pagePickerVisible === true) {
+            pagePicker = <Picker
                 selectedValue={this.state.currentPage}
                 style={{
                     height: 225,
                 }}
-                onValueChange={(/** @type {number} */ itemValue, /** @type {number} */ itemIndex) => this._pageSelectorValueChanged(itemValue, itemIndex)}>
+                onValueChange={(/** @type {number} */ itemValue, /** @type {number} */ itemIndex) => this._pagePickerValueChanged(itemValue, itemIndex)}>
                 {pagePickerItems}
             </Picker>
         }
-        return pageSelector;
+        return pagePicker;
     }
 
-    _pageSelectorDismissed() {
-        console.log("in _pageSelectorDismissed");
+    _pagePickerDismissed() {
+        console.log("in _pagePickerDismissed");
         console.log("    page selected: " + this.state.currentPage.toString());
-        this._setModalVisible(!this.state.pageSelectorVisible);
+        this._setModalVisible(!this.state.pagePickerVisible);
         let maxResultsPerRequest = 10;
         let start = (this.state.currentPage - 1) * maxResultsPerRequest;
         console.log("    start (converted from page selected): " + start.toString());
@@ -286,8 +290,8 @@ export default class HomeScreen extends React.Component {
     * @param itemValue {string}
     * @param itemIndex {number}
     */
-    _pageSelectorValueChanged(itemValue, itemIndex) {
-        console.log("in _pageSelectorValueChanged");
+    _pagePickerValueChanged(itemValue, itemIndex) {
+        console.log("in _pagePickerValueChanged");
         console.log("    old current page: " + this.state.currentPage.toString());
         console.log("    page selected: " + itemValue.toString());
         this.setState({currentPage: itemValue});
@@ -297,7 +301,7 @@ export default class HomeScreen extends React.Component {
     * Computes the number of pages given the number of results of an OEIS request.
     * @param numberOfHits {number}
     */
-    computeNumberOfPages(numberOfHits) {
+    _computeNumberOfPages(numberOfHits) {
         console.log("in computNumberOfPages");
         let maxResultsPerRequest = 10;
         let numberOfPages = Math.ceil((0.0 + numberOfHits) / maxResultsPerRequest);
@@ -314,8 +318,8 @@ export default class HomeScreen extends React.Component {
     * @param {number} resultsPerPage - the number of results per page
     * @return {number} - the current page
     */
-    computeCurrentPage(start, resultsPerPage) {
-        console.log("in computeCurrentPage");
+    _computeCurrentPage(start, resultsPerPage) {
+        console.log("in _computeCurrentPage");
         console.log("    start: " + start.toString());
         console.log("    resultsPerPage: " + resultsPerPage.toString());
         console.log("    current page (start/resultsPerPage + 1): " + ((start / resultsPerPage) + 1).toString());
@@ -371,5 +375,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         paddingLeft: 10,
         paddingRight: 10
+    },
+    minorText: {
+        fontSize: 15,
+        color: "#666",
     }
 });
