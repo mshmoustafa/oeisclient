@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
+import {Text, View, StyleSheet, TouchableHighlight, TouchableNativeFeedback, Platform} from 'react-native';
 
 /**
 * @class Card {React.Component}
@@ -36,19 +36,20 @@ export default class Card extends React.Component {
                 </View>
             );
         }
+        const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableHighlight
+
         return (
             <View style={[styles.pronouncedBorder, {marginBottom: 10, marginHorizontal: 10,}]}>
-                <TouchableHighlight
+                <Touchable
                     onPress={this.props.onPress}>
                     <View style={styles.card}>
-                        <View
-                            style={{backgroundColor: "white"}}>
+                        <View>
                             {headerView}
                             {subHeaderView}
                             {bodyView}
                         </View>
                     </View>
-                </TouchableHighlight>
+                </Touchable>
             </View>
         );
     }

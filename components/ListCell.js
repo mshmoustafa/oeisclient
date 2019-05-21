@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
+import {Text, View, StyleSheet, TouchableHighlight, TouchableNativeFeedback, Platform} from 'react-native';
 
 /**
 * @class ListCell {React.Component}
@@ -53,19 +53,19 @@ class ListCell extends React.PureComponent {
       );
       */
     }
+    const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableHighlight
     return (
       <View style={styles.cellSeparator}>
-        <TouchableHighlight
+        <Touchable
           onPress={this.props.onPress}>
           <View style={styles.card}>
-            <View
-              style={{backgroundColor: "white"}}>
+            <View>
               {headerView}
               {subHeaderView}
               {bodyView}
             </View>
           </View>
-        </TouchableHighlight>
+        </Touchable>
       </View>
     );
   }
