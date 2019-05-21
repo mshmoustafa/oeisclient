@@ -438,7 +438,7 @@ const styles = StyleSheet.create({
     borderColor: "#bbb",
     borderWidth: 1,
     borderStyle: "solid",
-    // borderRadius: 3,
+    borderRadius: 10,
     // shadowColor: "black",
     // shadowOffset: {
     //   width: 0,
@@ -482,8 +482,10 @@ const styles = StyleSheet.create({
     // shadowOpacity: 1,
     // shadowRadius: 0,
     margin: 10,
-    paddingLeft: 10,
-    paddingRight: 10
+    marginTop: 20,
+    marginBottom: 20,
+    paddingLeft: 15,
+    paddingRight: 15
   },
   minorText: {
     fontSize: 15,
