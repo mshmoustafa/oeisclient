@@ -60,14 +60,14 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderStyle: "solid",
         // borderRadius: 3,
-        shadowColor: "black",
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity: 0.5,
+        // shadowColor: "black",
+        // shadowOffset: {
+            // width: 0,
+            // height: 1
+        // },
+        // shadowOpacity: 0.5,
         // shadowRadius: 1
-        shadowRadius: 0
+        // shadowRadius: 0
     },
     separator: {
         borderTopColor: "#eee",

@@ -439,15 +439,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     // borderRadius: 3,
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
+    // shadowColor: "black",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 1
+    // },
     // shadowOpacity: 0.2,
-    shadowOpacity: 0.5,
+    // shadowOpacity: 0.5,
     // shadowRadius: 1
-    shadowRadius: 0
+    // shadowRadius: 0
   },
   /** This is meant to be applied to a button's container to make it look more pronounced. */
   /** Don't forget to use pronounced border with this style! */
