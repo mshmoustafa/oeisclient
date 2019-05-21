@@ -12,15 +12,17 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
-    "expo": "^32.0.0",
+    "expo": "^32.0.6",
+    "htmlparser": "^1.7.7",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-picker": "^4.3.7",
-    "react-navigation": "^3.0.9"
+    "react-navigation": "^3.11.0",
+    "xmldom": "^0.1.27"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0",
-    "jest-expo": "^32.0.0"
+    "babel-preset-expo": "^5.1.1",
+    "jest-expo": "^32.0.1"
   },
   "private": true
 }

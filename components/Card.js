@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
 
 /**
 * @class Card {React.Component}
@@ -25,15 +25,30 @@ export default class Card extends React.Component {
         }
         let bodyView;
         if (this.props.body !== undefined) {
+            let bodyStyle = [];
+            // if (this.props.header !== undefined || this.props.subHeader !== undefined) {
+                bodyStyle.push(styles.separator);
+            // }
+            bodyStyle.push(styles.cardBody);
             bodyView = (
-                <Text style={styles.cardBody}>{this.props.body}</Text>
+                <View style={styles.separator}>
+                    <Text style={styles.cardBody}>{this.props.body}</Text>
+                </View>
             );
         }
         return (
-            <View style={[styles.pronouncedBorder, styles.card]}>
-                {headerView}
-                {subHeaderView}
-                {bodyView}
+            <View style={[styles.pronouncedBorder, {marginBottom: 10, marginHorizontal: 10,}]}>
+                <TouchableHighlight
+                    onPress={this.props.onPress}>
+                    <View style={styles.card}>
+                        <View
+                            style={{backgroundColor: "white"}}>
+                            {headerView}
+                            {subHeaderView}
+                            {bodyView}
+                        </View>
+                    </View>
+                </TouchableHighlight>
             </View>
         );
     }
@@ -41,27 +56,33 @@ export default class Card extends React.Component {
 
 const styles = StyleSheet.create({
     pronouncedBorder: {
-        borderColor: "#ddd",
+        borderColor: "#bbb",
         borderWidth: 1,
         borderStyle: "solid",
-        borderRadius: 3,
+        // borderRadius: 3,
         shadowColor: "black",
         shadowOffset: {
             width: 0,
             height: 1
         },
-        shadowOpacity: 0.2,
-        shadowRadius: 1
+        shadowOpacity: 0.5,
+        // shadowRadius: 1
+        shadowRadius: 0
+    },
+    separator: {
+        borderTopColor: "#eee",
+        borderTopWidth: 1,
+        borderStyle: "solid",
+        paddingTop: 5,
     },
     /** Don't forget to use pronounced border with this style! */
     card: {
         padding: 15,
-        marginBottom: 10,
         backgroundColor: "white"
     },
     cardHeader: {
-        fontSize: 25,
-        fontWeight: "bold",
+        fontSize: 22,
+        fontWeight: "500",
         paddingBottom: 5
     },
     cardSubHeader: {

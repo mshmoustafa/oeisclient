@@ -5,184 +5,195 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  TouchableHighlight,
   View,
+  SectionList,
+  Button,
+  Linking,
 } from 'react-native';
-import { WebBrowser } from 'expo';
+import Utility from '../lib/Utility';
+import { ListCell, ListCellSeparator } from '../components/ListCell';
+import { AsyncComponent } from '../components/AsyncComponent';
+import MyShareButton from '../components/ShareButton';
+import Styles from '../constants/Styles';
 
-import { MonoText } from '../components/StyledText';
-
-export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
+export default class SequenceScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam("title", "Sequence"),
+      // headerRight: (<Button title="Open..." onPress={() => Linking.openURL("https://oeis.org/" + navigation.getParam("title", "Sequence")).catch((err) => console.warn('An error occurred', err))} />),
+      headerRight: (<MyShareButton title="Share" shareTitle={navigation.getParam("title", "Sequence")} url={"https://oeis.org/" + navigation.getParam("title", "Sequence")} />),
+      // headerRight: (<MyShareButton title="Open..." url={"https://oeis.org/"} />),
+    };
   };
 
+
   render() {
+    let sequence = this.props.navigation.getParam("sequence");
+    let sections = [];
+    if (sequence !== undefined || sequence !== null) {
+      let number = Utility.prettifyNumber(sequence.number);
+      let name = sequence.name;
+      let data = Utility.addSpacesBetweenCommas(sequence.data);
+      let keyword = Utility.addSpacesBetweenCommas(sequence.keyword);
+      let author = sequence.author;
+      let offset = sequence.offset;
+      // let keyword = sequence.keyword;
+      sections = [
+        {
+          title: "ID Number",
+          data: [
+            {key: "id", body: <Text selectable={true}>{number}</Text>},
+          ]
+        },
+        {
+          title: "Name",
+          data: [
+            {key: "name", body: <Text selectable={true}>{name}</Text>}
+          ]
+        },
+        {
+          title: "Data",
+          data: [
+            {key: "data", body: <Text selectable={true} style={Styles.monospace}>{data}</Text>}
+          ]
+        },
+        {
+          title: "Offset",
+          data: [
+            {key: "offset", body: <Text selectable={true} style={Styles.monospace}>{offset}</Text>}
+          ]
+        },
+        {
+          title: "Keywords",
+          data: [
+            {key: "keywords", body: <Text selectable={true}>{keyword}</Text>}
+          ]
+        },
+        {
+          title: "Author",
+          data: [
+            // {key: "author", body: <View><Text selectable={true}>{Utility.stripUnderscoresFromAuthor(author)}</Text><AsyncComponent asyncComponent={Utility.convertAuthorToButtons} arguments={author} /></View>}
+            // {key: "author", body: <View><Text onPress={() => console.warn("Tapped some text")}>{Utility.stripUnderscoresFromAuthor(author)}</Text>{Utility.convertAuthorToButtons(author)}</View>}
+            {key: "author", body: <Text>{Utility.convertAuthorToLinkText(author, this.authorTapped)}</Text>}
+            // {key: "author", body: [<Button key="asdf" title="Number Man" onPress={() => {Utility.convertAuthorToButtons("_N. J. A. Sloane_, 1964"); console.warn("Button pressed");}}/>]}
+          ]
+        },
+        {
+          title: "Details",
+          data: [
+            {
+              key: "comment",
+              body: "Comments",
+              onPress: this._makeOnPressFor("Comments", "comment", sequence.comment),
+            },
+            {
+              key: "reference",
+              body: "References",
+              onPress: this._makeOnPressFor("References", "reference", sequence.reference),
+            },
+            {
+              key: "link",
+              body: "Links",
+              onPress: this._makeOnPressFor("Links", "link", sequence.link),
+            },
+            {
+              key: "formula",
+              body: "Formulas",
+              onPress: this._makeOnPressFor("Formulas", "formula", sequence.formula),
+            },
+            {
+              key: "example",
+              body: "Examples",
+              onPress: this._makeOnPressFor("Examples", "example", sequence.example),
+            },
+            {
+              key: "mathematica",
+              body: "Mathematica",
+              onPress: this._makeOnPressFor("Mathematica", "mathematica", sequence.mathematica),
+            },
+            {
+              key: "maple",
+              body: "Maple",
+              onPress: this._makeOnPressFor("Maple", "maple", sequence.maple),
+            },
+            {
+              key: "program",
+              body: "Programs",
+              onPress: this._makeOnPressFor("Programs", "program", sequence.program),
+            },
+            {
+              key: "xref",
+              body: "Crossrefs",
+              onPress: this._makeOnPressFor("Crossrefs", "xref", sequence.xref),
+            },
+          ]
+        },
+      ];
+    }
+    // let sequence = this.props.navigation.getParam("sequence");
+    // if (sequence === undefined || sequence === null) {
+      // sequence = "Didn't get a sequence!";
+    // } else {
+      // sequence = sequence.number.toString();
+    // }
+    // return (
+      // <View>
+        // <Text>{sequence}</Text>
+      // </View>
+    // );
     return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
-
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
-          </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
+      <View style={{flex: 1, backgroundColor: "#fefefe",}}>
+        <SectionList
+          renderItem={this._renderItem}
+          renderSectionHeader={this._renderSectionHeader}
+          ItemSeparatorComponent={() => <ListCellSeparator />}
+          keyExtractor={(item, index) => item.key}
+          sections={sections} />
       </View>
     );
   }
 
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
+  _renderItem = (item, index, section) => {
+    // return <Text>Body: {item.item.body}</Text>
+    return (
+      <ListCell
+        body={item.item.body}
+        onPress={item.item.onPress} />
+    );
+  }
 
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
+  _renderSectionHeader = (section) => {
+    if (section.section.title === undefined) {
+      return;
     } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
+      return <Text style={styles.sectionHeader}>{section.section.title}</Text>
     }
   }
 
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
+  _makeOnPressFor = (title, property, items) => {
+    let params = {
+      title: title,
+      property: property,
+      items: items,
+    };
+    return ( () => this.props.navigation.push("Detail", params) );
+  }
 
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
+  authorTapped = (author) => {
+    console.warn(author);
+    let preparedAuthor = Utility.stripUnderscoresFromAuthor(author).split(" ").join("_");
+    let url = "https://www.oeis.org/wiki/User:" + preparedAuthor;
+    Linking.openURL(url).catch((err) => console.error('An error occurred', err));
+  }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
+  sectionHeader: {
+    fontWeight: "500",
+    backgroundColor: "#efefef",
+    padding: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 });
