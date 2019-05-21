@@ -3,7 +3,7 @@ import Colors from './Colors';
 
 export default StyleSheet.create({
   monospace: {
-    fontFamily: "monospace",
+    fontFamily: "space-mono",
   },
   active: {
     color: Colors.tintColor,
