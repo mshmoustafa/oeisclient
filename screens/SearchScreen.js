@@ -53,7 +53,8 @@ export default class SearchScreen extends React.Component {
       <Modal
         animationType="fade"
         transparent={true}
-        visible={this.state.activityIndicatorVisible}>
+        visible={this.state.activityIndicatorVisible}
+        onRequestClose={() => {/* Do nothing since it doesn't make sense to close a loading indicator */}}>
         <View style={{
             flex: 1,
             flexDirection: 'column',
@@ -77,7 +78,8 @@ export default class SearchScreen extends React.Component {
       <Modal
         animationType="fade"
         transparent={true}
-        visible={this.state.pagePickerVisible}>
+        visible={this.state.pagePickerVisible}
+        onRequestClose={() => {this.setState({pagePickerVisible: false});}}>
         <View style={{
           flex: 1,
           flexDirection: 'column',
