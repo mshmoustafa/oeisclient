@@ -281,7 +281,6 @@ export default class SearchScreen extends React.Component {
       return undefined;
     }
     let numberOfPages = this._computeNumberOfPages(this.state.searchResults.count);
-    // let currentPage = this._computeCurrentPage(this.state.searchResults.start, 10);
     let pagePickerItems = [];
     for (let i = 1; i <= numberOfPages; i++) {
       pagePickerItems.push(
