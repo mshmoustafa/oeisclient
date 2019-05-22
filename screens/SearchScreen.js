@@ -19,6 +19,7 @@ import Utility from '../lib/Utility';
 import Card from '../components/Card';
 import SimpleList from '../components/List';
 import { ListCell, ListCellSeparator } from '../components/ListCell';
+import ListPicker from '../components/ListPicker';
 import Colors from '../constants/Colors.js';
 import Styles from '../constants/Styles.js';
 import a from '../components/a';
@@ -35,7 +36,7 @@ export default class SearchScreen extends React.Component {
     currentPage: 0,
     /** @type {OEISResponse} */
     searchResults: undefined,
-    // pagePickerVisible: false,
+    pagePickerVisible: false,
     activityIndicatorVisible: false,
   }
 
@@ -72,45 +73,41 @@ export default class SearchScreen extends React.Component {
         </View>
       </Modal>
     );
-    // let modal2 = (
-    //   <Modal
-    //     animationType="fade"
-    //     transparent={true}
-    //     visible={this.state.pagePickerVisible}
-    //     >
-    //     <View style={{
-    //         flex: 1,
-    //         flexDirection: 'column',
-    //         justifyContent: 'flex-end',
-    //         alignItems: 'stretch',
-    //         backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    //       }}>
-    //       <View style={{backgroundColor: "white"}}>
-    //         <Button
-    //           title="Done"
-    //           onPress={() => {this._pagePickerDismissed();}} />
-    //         {pagePicker}
-    //       </View>
-    //     </View>
-    //   </Modal>
-    // );
-    // return (
-    //   <View style={styles.base}>
-    //     {modal1}
-    //     {modal2}
-    //     <View style={{flex: 1}}>
-    //       {body}
-    //     </View>
-    //   </View>
-    // );
+    let modal2 = (
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={this.state.pagePickerVisible}>
+        <View style={{
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        }}>
+          <View style={{minWidth: 150, marginTop: 40, marginBottom: 40, backgroundColor: "white"}}>
+            <Button
+              title="Cancel"
+              onPress={() => {this._pagePickerDismissed();}} />
+            {pagePicker}
+          </View>
+        </View>
+      </Modal>
+    );
     return (
       <View style={styles.base}>
         {modal1}
+        {modal2}
         <View style={{flex: 1}}>
           {body}
         </View>
       </View>
     );
+  }
+
+  _setModalVisible = (visible) => {
+    console.log("in _setModalVisible");
+    this.setState({pagePickerVisible: visible});
   }
 
   _searchButtonPressed = () => {
@@ -181,14 +178,6 @@ export default class SearchScreen extends React.Component {
         <Button
           title={pagePickerString}
           onPress={this._pagePickerButtonPressed}/>
-        <FlatList
-          /* contentContainerStyle={{flex: 1, justifyContent: "center"}} */
-          style={{marginBottom: 10}}
-          centerContent={true}
-          data={Array.from(Array(numberOfPages).keys())}
-          renderItem={({item}) => <Button key={(item+1).toString()} title={" " + (item+1).toString() + " "} />}
-          horizontal={true}
-          keyExtractor={(item) => (item+1).toString() } />
       </View>
     );
   }
@@ -283,32 +272,30 @@ export default class SearchScreen extends React.Component {
     let numberOfPages = this._computeNumberOfPages(this.state.searchResults.count);
     let pagePickerItems = [];
     for (let i = 1; i <= numberOfPages; i++) {
-      pagePickerItems.push(
-        <Picker.Item key={i} label={i.toString()} value={i}/>
-      );
+      pagePickerItems.push({
+        key: i,
+        body: i.toString(),
+      });
     }
     let pagePicker;
     if (this.state.pagePickerVisible === true) {
-      pagePicker = <Picker
-        selectedValue={this.state.currentPage}
-        style={{
-          height: 225,
-        }}
-        onValueChange={(/** @type {number} */ itemValue, /** @type {number} */ itemIndex) => this._pagePickerValueChanged(itemValue, itemIndex)}>
-        {pagePickerItems}
-      </Picker>
+      pagePicker = (
+        <ListPicker
+          items={pagePickerItems}
+          onItemPress={(itemKey) => {this._pagePickerValueChanged(itemKey, itemKey)}} />
+      )
     }
     return pagePicker;
   }
 
+  _pagePickerButtonPressed = () => {
+    console.log("in _pagePickerButtonPressed");
+    this._setModalVisible(!(this.state.pagePickerVisible));
+  }
+
   _pagePickerDismissed() {
     console.log("in _pagePickerDismissed");
-    console.log("    page selected: " + this.state.currentPage.toString());
     this._setModalVisible(!this.state.pagePickerVisible);
-    let maxResultsPerRequest = 10;
-    let start = (this.state.currentPage - 1) * maxResultsPerRequest;
-    console.log("    start (converted from page selected): " + start.toString());
-    this._submitQuery(this.state.lastSearch, start);
   }
 
   /**
@@ -319,6 +306,11 @@ export default class SearchScreen extends React.Component {
     console.log("in _pagePickerValueChanged");
     console.log("    old current page: " + this.state.currentPage.toString());
     console.log("    page selected: " + itemValue.toString());
+    this._setModalVisible(!this.state.pagePickerVisible);
+    let maxResultsPerRequest = 10;
+    let start = (itemValue - 1) * maxResultsPerRequest;
+    console.log("    start (converted from page selected): " + start.toString());
+    this._submitQuery(this.state.lastSearch, start);
     this.setState({currentPage: itemValue});
   }
 
