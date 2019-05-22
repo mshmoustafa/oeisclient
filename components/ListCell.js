@@ -71,7 +71,7 @@ class ListCell extends React.PureComponent {
   }
 }
 
-class ListCellSeparator extends React.Component {
+class ListCellSeparator extends React.PureComponent {
   render() {
     return (
       <View
