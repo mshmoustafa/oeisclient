@@ -54,6 +54,7 @@ export default class SearchScreen extends React.Component {
         animationType="fade"
         transparent={true}
         visible={this.state.activityIndicatorVisible}
+        supportedOrientations={["portrait", "landscape"]}
         onRequestClose={() => {/* Do nothing since it doesn't make sense to close a loading indicator */}}>
         <View style={{
             flex: 1,
@@ -79,6 +80,7 @@ export default class SearchScreen extends React.Component {
         animationType="fade"
         transparent={true}
         visible={this.state.pagePickerVisible}
+        supportedOrientations={["portrait", "landscape"]}
         onRequestClose={() => {this.setState({pagePickerVisible: false});}}>
         <View style={{
           flex: 1,
