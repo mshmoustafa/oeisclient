@@ -22,7 +22,6 @@ import { ListCell, ListCellSeparator } from '../components/ListCell';
 import Colors from '../constants/Colors.js';
 import Styles from '../constants/Styles.js';
 import a from '../components/a';
-// import {Picker, PickerOptions} from 'react-native-picker';
 
 export default class SearchScreen extends React.Component {
   static navigationOptions = {
@@ -114,31 +113,11 @@ export default class SearchScreen extends React.Component {
     );
   }
 
-  // _setModalVisible(visible) {
-  //   console.log("in _setModalVisible");
-  //   this.setState({pagePickerVisible: visible});
-  // }
-
   _searchButtonPressed = () => {
     console.log("in _searchButtonPressed");
     console.log("    Search Button Tapped");
     this._submitQuery(this.state.text, 0);
   }
-
-  // _pagePickerButtonPressed = () => {
-  //   console.log("in _pagePickerButtonPressed");
-  //   this.setState(previousState => ({pagePickerVisible: true}));
-  //   // let thePicker = <Picker     style={{         height: 300     }}
-  //   // showDuration={300}     showMask={true}     pickerData={["Java,
-  //   // JavaScript"]}//picker`s value List     selectedValue={"Java"}//default to be
-  //   // selected value     // onPickerDone={}//when confirm your choice />
-  //   // let thePickerOptions = {
-  //   //     pickerData: ["Java, JavaScript"],
-  //   //     selectedValue: ["Java"]
-  //   // }
-  //   // let thePicker = new Picker(thePickerOptions)
-  //   // thePicker.toggle();
-  // }
 
   /**
   * Validates search query from the search bar and performs a search.
@@ -170,28 +149,11 @@ export default class SearchScreen extends React.Component {
           activityIndicatorVisible: false
         }));
       }, 1000);
-      // this._parseResults(results);
     });
 
   }
 
   _searchHeader = () => {
-    // return (
-    //   <View>
-    //     <TextInput
-    //       style={[styles.pronouncedBorder, styles.boldTextInput]}
-    //       placeholder="Search the OEIS..."
-    //       onChangeText={(text) => this.setState(previousState => {
-    //         this.state.text = text;
-    //       })}
-    //       onSubmitEditing={() => this._submitQuery(this.state.text, 0)}/>
-    //     <Button
-    //       title="Search"
-    //       onPress={this._searchButtonPressed}
-    //       color={Colors.tintColor}
-    //       style={styles.button} />
-    //   </View>
-    // );
     return (
       <View>
         <TextInput
@@ -249,8 +211,6 @@ export default class SearchScreen extends React.Component {
       {
         key: 2,
         header: "Getting Started",
-        // body: a("https://www.oeis.org", "OEIS"),
-        // body: <a><Text>OEIS</Text></a>,
       },
     ];
     let list = (
@@ -260,17 +220,6 @@ export default class SearchScreen extends React.Component {
         items={listViewContents} />
     );
     return list;
-    // let listView = new Array();
-    // listViewContents.forEach(element => {
-    //     // listView.push(this._cardView(key, element.header, element.body));
-    //     listView.push(<Card key={key} header={element.header} body={element.body}/>);
-    //     key = key + 1;
-    // });
-    // return (
-    //     <View>
-    //         {listView}
-    //     </View>
-    // );
   }
 
   /**
@@ -295,27 +244,6 @@ export default class SearchScreen extends React.Component {
         keyExtractor={ (item) => item.number.toString() } />
     );
     return list;
-    // let listView = new Array();
-    // searchResults.forEach(element => {
-    //   listView.push(this._searchResultCard(element));
-    // });
-    // let pagePickerString = "Page " + this.state.currentPage + " of " + this._computeNumberOfPages(numberOfHits);
-    // return (
-    //   <View>
-    //     <Text
-    //       style={[styles.minorText, {textAlign: "left", marginBottom: 18}]}>
-    //       Retrieved {this.state.searchResults.count} results.
-    //     </Text>
-    //     {listView}
-    //     <Button
-    //       title={pagePickerString}
-    //       onPress={this._pagePickerButtonPressed}/>
-    //     <View style={{
-    //         height: 50
-    //       }}>
-    //     </View>
-    //   </View>
-    // );
   }
 
   /**
@@ -328,14 +256,11 @@ export default class SearchScreen extends React.Component {
     console.log("    data: " + item.data.toString());
     let dataWithSpaces = Utility.addSpacesBetweenCommas(item.data);
     return (
-      // <TouchableHighlight
-      // key={item.number} >
       <ListCell
         header={sequenceNumber}
         subHeader={item.name}
         onPress={() => this._searchResultCardTouched(item)}
         body=<Text style={Styles.monospace}>{dataWithSpaces}</Text> />
-      // </TouchableHighlight>
     );
   }
 
@@ -439,23 +364,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderRadius: 10,
-    // shadowColor: "black",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 1
-    // },
-    // shadowOpacity: 0.2,
-    // shadowOpacity: 0.5,
-    // shadowRadius: 1
-    // shadowRadius: 0
   },
   /** This is meant to be applied to a button's container to make it look more pronounced. */
   /** Don't forget to use pronounced border with this style! */
   callToActionButtonContainer: {
-    // backgroundColor: "white",
     backgroundColor: Colors.tintColor,
     borderColor: Colors.darkerTintColor,
-    // shadowColor: "#ccc",
     shadowColor: Colors.darkestTintColor,
     shadowOffset: {
       width: 0,
@@ -474,13 +388,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 40,
     backgroundColor: "white",
-    // shadowColor: "#ccc",
-    // shadowOffset: {
-    // width: 0,
-    // height: 2
-    // },
-    // shadowOpacity: 1,
-    // shadowRadius: 0,
     margin: 10,
     marginTop: 20,
     marginBottom: 20,
