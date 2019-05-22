@@ -9,6 +9,7 @@ import {Text, View, StyleSheet, TouchableHighlight, TouchableNativeFeedback, Pla
 * @property subHeader {string} A subheading to display under the heading.
 * @property body {string} The body text of the cell.
 */
+const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableHighlight
 class ListCell extends React.PureComponent {
   render() {
     let headerView;
@@ -53,7 +54,6 @@ class ListCell extends React.PureComponent {
       );
       */
     }
-    const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableHighlight
     return (
       <View style={styles.cellSeparator}>
         <Touchable
