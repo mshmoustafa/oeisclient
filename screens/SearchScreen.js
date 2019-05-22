@@ -316,7 +316,7 @@ export default class SearchScreen extends React.Component {
   * @param itemIndex {number}
   */
   _pagePickerValueChanged(itemValue, itemIndex) {
-    console.warn("in _pagePickerValueChanged");
+    console.log("in _pagePickerValueChanged");
     console.log("    old current page: " + this.state.currentPage.toString());
     console.log("    page selected: " + itemValue.toString());
     this.setState({currentPage: itemValue});
