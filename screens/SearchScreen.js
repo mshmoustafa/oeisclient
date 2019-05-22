@@ -89,7 +89,7 @@ export default class SearchScreen extends React.Component {
           alignItems: 'center',
           backgroundColor: 'rgba(0, 0, 0, 0.2)',
         }}>
-          <View style={{minWidth: 150, marginTop: 40, marginBottom: 40, backgroundColor: "white"}}>
+          <View style={{minWidth: 150, marginTop: 40, marginBottom: 40, backgroundColor: "white", borderColor: "#bbb", borderWidth: 1, borderStyle: "solid"}}>
             <Button
               title="Cancel"
               onPress={() => {this._pagePickerDismissed();}} />
