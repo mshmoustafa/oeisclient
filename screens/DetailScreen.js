@@ -82,6 +82,7 @@ export default class DetailScreen extends React.Component {
     )
     return (
       <ListCell
+        style={styles.listCell}
         key={item.key}
         body={body} />
     );
@@ -125,6 +126,12 @@ export default class DetailScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  base: {
+    backgroundColor: "#f9f9f9",
+  },
+  listCell: {
+    backgroundColor: "white",
+  },
   noEntriesView: {
     flex: 1,
     flexDirection: 'column',
