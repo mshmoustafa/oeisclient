@@ -29,20 +29,26 @@ export default class DetailScreen extends React.Component {
     let key = 0;
     let cellContents = [];
     let items = this.props.navigation.getParam("items");
-    items.forEach((element) => {
-      cellContents.push({
-        key: key,
-        body: element,
+    if (items !== null && items !== undefined) {
+      items.forEach((element) => {
+        cellContents.push({
+          key: key,
+          body: element,
+        })
+        key = key + 1;
       })
-      key = key + 1;
-    })
-    return (
-      <FlatList
-        data={cellContents}
-        renderItem={this._renderItem}
-        ItemSeparatorComponent={() => <ListCellSeparator />}
-        keyExtractor={ (item) => item.key.toString() } />
-    );
+      return (
+        <FlatList
+          style={styles.base}
+          data={cellContents}
+          renderItem={this._renderItem}
+          ItemSeparatorComponent={() => <ListCellSeparator />}
+          keyExtractor={ (item) => item.key.toString() } />
+      );
+    } else {
+      return (
+      );
+    }
   }
 
   _renderItem = ({item}) => {
