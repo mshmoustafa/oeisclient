@@ -46,13 +46,6 @@ class ListCell extends React.PureComponent {
           </View>
         );
       }
-      /*
-      bodyView = (
-        <View style={bodySeparator}>
-          <Text style={styles.cardBody}>{this.props.body}</Text>
-        </View>
-      );
-      */
     }
     let cardStyles = this.props.disabled ? [styles.card, styles.disabled] : [styles.card];
     return (
@@ -87,22 +80,12 @@ class ListCellSeparator extends React.PureComponent {
 };
 
 const styles = StyleSheet.create({
-  /*
-  cellSeparator: {
-    borderTopColor: "#ddd",
-    borderTopWidth: 1,
-    borderStyle: "solid",
-    borderBottomColor: "#ddd",
-    borderBottomWidth: 1,
-  },
-  */
   bodySeparator: {
     borderTopColor: "#eee",
     borderTopWidth: 1,
     borderStyle: "solid",
     paddingTop: 5,
   },
-  /** Don't forget to use pronounced border with this style! */
   card: {
     padding: 20,
     backgroundColor: "white"
