@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
         borderStyle: "solid",
         paddingTop: 5,
     },
-    /** Don't forget to use pronounced border with this style! */
     card: {
         padding: 20,
         backgroundColor: "white",
