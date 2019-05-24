@@ -10,7 +10,6 @@ import { ListCell, ListCellSeparator } from '../components/ListCell';
 import { AsyncComponent } from '../components/AsyncComponent';
 import Utility from '../lib/Utility';
 import {OEIS, OEISResponse, OEISSequence} from "../lib/oeis";
-// import FastHTMLParser from "fast-html-parser";
 
 export default class DetailScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -20,10 +19,6 @@ export default class DetailScreen extends React.Component {
   };
 
   render() {
-
-    // var root = FastHTMLParser.parse('<ul id="list"><li>Hello World</li></ul>');
-
-    // console.warn(root.firstChild.structure);
 
     let propertyString = this.props.navigation.getParam("property");
     if (propertyString === "maple" || propertyString === "mathematica" || propertyString === "program") {
@@ -52,44 +47,7 @@ export default class DetailScreen extends React.Component {
   }
 
   _renderItem = ({item}) => {
-    // let body = item.body.replace(Utility.regexAuthor, Utility.convertAuthorToLinkOriginal);
-    // let body = Utility.convertAuthorToLink(item.body);
-
-    // let body = (
-    //   <View>
-    //     <Text>{item.body}</Text>
-    //     {Utility.convertAuthorToButtons(item.body)}
-    //   </View>
-    // )
-
-    // let body = (
-    //   <View>
-    //     <Text>{item.body}</Text>
-    //     <AsyncComponent asyncComponent={Utility.convertAuthorToButtons} arguments={item.body} />
-    //   </View>
-    // )
-
-    // let body = (
-    //   <View>
-    //     <Text>{item.body}</Text>
-    //   </View>
-    // )
-
-    // let body = (
-    //   <View>
-    //     <Text>{item.body.replace(Utility.regexAuthor, Utility.convertAuthorToLinkOriginal)}</Text>
-    //   </View>
-    // )
-
-    // let body = (
-    //   <View>
-    //     <Text>{Utility.convertAuthorToLinkText(item.body)}</Text>
-    //   </View>
-    // )
-    // console.log("Rendering item");
-    // console.log(item.body);
     let bodyWithParsedLinks = Utility.convertLinksToTextLinks(item.body, this.linkTapped);
-    // console.log(bodyWithParsedLinks);
     let bodyWithParsedLinksAndSequences = [];
     bodyWithParsedLinks.forEach(element => {
       if (typeof element === "string") {
@@ -99,7 +57,6 @@ export default class DetailScreen extends React.Component {
         bodyWithParsedLinksAndSequences.push(element);
       }
     });
-    // console.log(bodyWithParsedLinksAndSequences);
     let bodyWithParsedLinksAndSequencesAndAuthors = [];
     bodyWithParsedLinksAndSequences.forEach(element => {
       if (typeof element === "string") {
@@ -109,13 +66,11 @@ export default class DetailScreen extends React.Component {
         bodyWithParsedLinksAndSequencesAndAuthors.push(element);
       }
     });
-    // console.log(bodyWithParsedLinksAndSequencesAndAuthors);
     let body = (
       <View>
         <Text selectable={true}>{bodyWithParsedLinksAndSequencesAndAuthors}</Text>
       </View>
     )
-    // console.warn(body);
     return (
       <ListCell
         key={item.key}
@@ -147,20 +102,11 @@ export default class DetailScreen extends React.Component {
       return;
     }
     // TODO: show a progress bar
-    // this.setState(previousState => ({activityIndicatorVisible: true}));
     let _oeis = new OEIS("english", false);
     _oeis.searchByID(sequenceID, "json", (/** @type {OEISResponse} */ results) => {
       console.log("in searchByID Callback");
       console.log("    " + results.greeting);
       console.log("    Retrieved " + results.count + " results.");
-      // setTimeout(() => {
-      //   this.setState(previousState => ({
-      //     lastSearch: text,
-      //     currentPage: currentPage,
-      //     searchResults: results,
-      //     activityIndicatorVisible: false
-      //   }));
-      // }, 1000);
       this.props.navigation.push("Sequence", {
         sequence: results.results[0],
         title: Utility.prettifyNumber(results.results[0].number.toString()),
