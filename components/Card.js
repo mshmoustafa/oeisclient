@@ -26,9 +26,7 @@ export default class Card extends React.Component {
         let bodyView;
         if (this.props.body !== undefined) {
             let bodyStyle = [];
-            // if (this.props.header !== undefined || this.props.subHeader !== undefined) {
-                bodyStyle.push(styles.separator);
-            // }
+            bodyStyle.push(styles.separator);
             bodyStyle.push(styles.cardBody);
             bodyView = (
                 <View style={styles.separator}>
