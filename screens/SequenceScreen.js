@@ -182,7 +182,7 @@ export default class SequenceScreen extends React.Component {
   }
 
   authorTapped = (author) => {
-    console.warn(author);
+    console.log(author);
     let preparedAuthor = Utility.stripUnderscoresFromAuthor(author).split(" ").join("_");
     let url = "https://www.oeis.org/wiki/User:" + preparedAuthor;
     Linking.openURL(url).catch((err) => console.error('An error occurred', err));
