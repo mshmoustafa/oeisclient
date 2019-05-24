@@ -103,6 +103,21 @@ export default class SearchScreen extends React.Component {
         {modal1}
         {modal2}
         <View style={{flex: 1}}>
+          <View>
+            <TextInput
+              style={[styles.pronouncedBorder, styles.boldTextInput]}
+              placeholder="Search the OEIS..."
+              autoCapitalize="none"
+              autoComplete="off"
+              autoCorrect={false}
+              blurOnSubmit={true}
+              clearButtonMode="always"
+              returnKeyType="search"
+              onChangeText={(text) => this.setState(previousState => {
+                this.state.text = text;
+              })}
+              onSubmitEditing={() => this._submitQuery(this.state.text, 0)} />
+          </View>
           {body}
         </View>
       </View>
@@ -154,26 +169,6 @@ export default class SearchScreen extends React.Component {
 
   }
 
-  _searchHeader = () => {
-    return (
-      <View>
-        <TextInput
-          style={[styles.pronouncedBorder, styles.boldTextInput]}
-          placeholder="Search the OEIS..."
-          autoCapitalize="none"
-          autoComplete="off"
-          autoCorrect={false}
-          blurOnSubmit={true}
-          clearButtonMode="always"
-          returnKeyType="search"
-          onChangeText={(text) => this.setState(previousState => {
-            this.state.text = text;
-          })}
-          onSubmitEditing={() => this._submitQuery(this.state.text, 0)}/>
-      </View>
-    );
-  }
-
   _searchFooter = (numberOfHits) => {
     let numberOfPages = this._computeNumberOfPages(numberOfHits);
     let pagePickerString = "Page " + this.state.currentPage + " of " + numberOfPages;
@@ -209,7 +204,6 @@ export default class SearchScreen extends React.Component {
     let list = (
       <SimpleList
         useCards={true}
-        headerComponent={this._searchHeader}
         items={listViewContents} />
     );
     return list;
@@ -232,7 +226,6 @@ export default class SearchScreen extends React.Component {
         data={searchResults}
         renderItem={this._searchResultCard}
         ItemSeparatorComponent={() => <ListCellSeparator />}
-        ListHeaderComponent={this._searchHeader}
         ListFooterComponent={this._searchFooter(numberOfHits)}
         keyExtractor={ (item) => item.number.toString() } />
     );
