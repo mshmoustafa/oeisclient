@@ -143,7 +143,7 @@ export default class SequenceScreen extends React.Component {
       // </View>
     // );
     return (
-      <View style={{flex: 1, backgroundColor: "#fefefe",}}>
+      <View style={styles.base}>
         <SectionList
           renderItem={this._renderItem}
           renderSectionHeader={this._renderSectionHeader}
@@ -158,6 +158,7 @@ export default class SequenceScreen extends React.Component {
     // return <Text>Body: {item.item.body}</Text>
     return (
       <ListCell
+        style={styles.listCell}
         body={item.item.body}
         onPress={item.item.onPress} />
     );
@@ -189,11 +190,18 @@ export default class SequenceScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  base: {
+    flex: 1,
+    backgroundColor: "#f9f9f9",
+  },
   sectionHeader: {
     fontWeight: "500",
     backgroundColor: "#efefef",
     padding: 5,
     paddingLeft: 10,
     paddingRight: 10,
+  },
+  listCell: {
+    backgroundColor: "white",
   },
 });
