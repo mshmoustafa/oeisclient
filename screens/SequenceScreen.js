@@ -21,9 +21,7 @@ export default class SequenceScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam("title", "Sequence"),
-      // headerRight: (<Button title="Open..." onPress={() => Linking.openURL("https://oeis.org/" + navigation.getParam("title", "Sequence")).catch((err) => console.warn('An error occurred', err))} />),
       headerRight: (<MyShareButton title="Share" shareTitle={navigation.getParam("title", "Sequence")} url={"https://oeis.org/" + navigation.getParam("title", "Sequence")} />),
-      // headerRight: (<MyShareButton title="Open..." url={"https://oeis.org/"} />),
     };
   };
 
@@ -38,7 +36,6 @@ export default class SequenceScreen extends React.Component {
       let keyword = Utility.addSpacesBetweenCommas(sequence.keyword);
       let author = sequence.author;
       let offset = sequence.offset;
-      // let keyword = sequence.keyword;
       sections = [
         {
           title: "ID Number",
@@ -73,10 +70,7 @@ export default class SequenceScreen extends React.Component {
         {
           title: "Author",
           data: [
-            // {key: "author", body: <View><Text selectable={true}>{Utility.stripUnderscoresFromAuthor(author)}</Text><AsyncComponent asyncComponent={Utility.convertAuthorToButtons} arguments={author} /></View>}
-            // {key: "author", body: <View><Text onPress={() => console.warn("Tapped some text")}>{Utility.stripUnderscoresFromAuthor(author)}</Text>{Utility.convertAuthorToButtons(author)}</View>}
             {key: "author", body: <Text>{Utility.convertAuthorToLinkText(author, this.authorTapped)}</Text>}
-            // {key: "author", body: [<Button key="asdf" title="Number Man" onPress={() => {Utility.convertAuthorToButtons("_N. J. A. Sloane_, 1964"); console.warn("Button pressed");}}/>]}
           ]
         },
         {
@@ -131,17 +125,6 @@ export default class SequenceScreen extends React.Component {
         },
       ];
     }
-    // let sequence = this.props.navigation.getParam("sequence");
-    // if (sequence === undefined || sequence === null) {
-      // sequence = "Didn't get a sequence!";
-    // } else {
-      // sequence = sequence.number.toString();
-    // }
-    // return (
-      // <View>
-        // <Text>{sequence}</Text>
-      // </View>
-    // );
     return (
       <View style={styles.base}>
         <SectionList
@@ -155,7 +138,6 @@ export default class SequenceScreen extends React.Component {
   }
 
   _renderItem = (item, index, section) => {
-    // return <Text>Body: {item.item.body}</Text>
     return (
       <ListCell
         style={styles.listCell}
