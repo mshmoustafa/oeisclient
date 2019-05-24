@@ -30,7 +30,7 @@ export default class DetailScreen extends React.Component {
     let key = 0;
     let cellContents = [];
     let items = this.props.navigation.getParam("items");
-    if (items !== null && items !== undefined) {
+    if (items !== null && items !== undefined && items.length > 0) {
       items.forEach((element) => {
         cellContents.push({
           key: key,
