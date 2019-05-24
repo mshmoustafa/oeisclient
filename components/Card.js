@@ -56,20 +56,6 @@ export default class Card extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    pronouncedBorder: {
-        borderColor: "#ccc",
-        borderWidth: 1,
-        borderStyle: "solid",
-        borderRadius: 10,
-        // shadowColor: "black",
-        // shadowOffset: {
-            // width: 0,
-            // height: 1
-        // },
-        // shadowOpacity: 0.5,
-        // shadowRadius: 1
-        // shadowRadius: 0
-    },
     separator: {
         borderTopColor: "#eee",
         borderTopWidth: 1,
