@@ -4,6 +4,7 @@ import {
   Text,
   FlatList,
   Linking,
+  StyleSheet
 } from 'react-native';
 import SimpleList from '../components/List';
 import { ListCell, ListCellSeparator } from '../components/ListCell';
@@ -47,6 +48,9 @@ export default class DetailScreen extends React.Component {
       );
     } else {
       return (
+        <View style={styles.noEntriesView}>
+          <Text style={styles.noEntriesText}>No entries</Text>
+        </View>
       );
     }
   }
@@ -119,3 +123,15 @@ export default class DetailScreen extends React.Component {
     });
   }
 }
+
+const styles = StyleSheet.create({
+  noEntriesView: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noEntriesText: {
+    color: "#666",
+  }
+});
