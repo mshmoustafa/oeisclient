@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   /** Don't forget to use pronounced border with this style! */
   card: {
-    padding: 15,
+    padding: 20,
     backgroundColor: "white"
   },
   cardHeader: {
