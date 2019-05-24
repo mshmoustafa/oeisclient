@@ -138,12 +138,20 @@ export default class SequenceScreen extends React.Component {
   }
 
   _renderItem = (item, index, section) => {
-    return (
-      <ListCell
-        style={styles.listCell}
-        body={item.item.body}
-        onPress={item.item.onPress} />
-    );
+    if (item.item.onPress !== null) {
+      return (
+        <ListCell
+          body={item.item.body}
+          onPress={item.item.onPress} />
+      );
+    } else {
+      // If onPress is null, then that means it was set to null in _makeOnPressFor and therefore there are no entries for that section, so disable that section's button and apply a disabled style to it.
+      return (
+        <ListCell
+          disabled={true}
+          body={item.item.body} />
+      );
+    }
   }
 
   _renderSectionHeader = (section) => {
@@ -155,12 +163,17 @@ export default class SequenceScreen extends React.Component {
   }
 
   _makeOnPressFor = (title, property, items) => {
-    let params = {
-      title: title,
-      property: property,
-      items: items,
-    };
-    return ( () => this.props.navigation.push("Detail", params) );
+    if (items !== null && items !== undefined && items.length > 0) {
+      let params = {
+        title: title,
+        property: property,
+        items: items,
+      };
+      return ( () => this.props.navigation.push("Detail", params) );
+    } else {
+      // If there are no items, don't make an onPress handler, effectively disabling that button.
+      return null;
+    }
   }
 
   authorTapped = (author) => {
