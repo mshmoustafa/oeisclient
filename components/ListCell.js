@@ -54,11 +54,12 @@ class ListCell extends React.PureComponent {
       );
       */
     }
+    let cardStyles = this.props.disabled ? [styles.card, styles.disabled] : [styles.card];
     return (
       <View style={styles.cellSeparator}>
         <Touchable
           onPress={this.props.onPress}>
-          <View style={styles.card}>
+          <View style={cardStyles}>
             <View>
               {headerView}
               {subHeaderView}
@@ -117,6 +118,9 @@ const styles = StyleSheet.create({
   },
   cardBody: {
     fontSize: 18
+  },
+  disabled: {
+    opacity: 0.5
   }
 });
 
