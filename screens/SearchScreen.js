@@ -178,7 +178,7 @@ export default class SearchScreen extends React.Component {
     let numberOfPages = this._computeNumberOfPages(numberOfHits);
     let pagePickerString = "Page " + this.state.currentPage + " of " + numberOfPages;
     return (
-      <View>
+      <View style={{marginTop: 10, marginBottom: 10}}>
         <Button
           title={pagePickerString}
           onPress={this._pagePickerButtonPressed}/>
