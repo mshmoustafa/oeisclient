@@ -147,7 +147,7 @@ export default class SearchScreen extends React.Component {
     }
     // TODO: show a progress bar
     this.setState(previousState => ({activityIndicatorVisible: true}));
-    let _oeis = new OEIS("english", false);
+    let _oeis = new OEIS("english", false, true);
     _oeis.searchByQueryAndStart(text, start, "json", (/** @type {OEISResponse} */ results) => {
       console.log("in searchByQueryAndStart Callback");
       console.log("    " + results.greeting);
