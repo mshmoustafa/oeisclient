@@ -16,6 +16,7 @@ import { ListCell, ListCellSeparator } from '../components/ListCell';
 import { AsyncComponent } from '../components/AsyncComponent';
 import MyShareButton from '../components/ShareButton';
 import Styles from '../constants/Styles';
+import {OEIS} from "../lib/oeis";
 
 export default class SequenceScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -53,6 +54,60 @@ export default class SequenceScreen extends React.Component {
           title: "Data",
           data: [
             {key: "data", body: <Text selectable={true} style={Styles.monospace}>{data}</Text>}
+          ]
+        },
+        {
+          title: "More",
+          data: [
+            {
+              key: "more",
+              body: (
+                <Text>
+                  <Text
+                    style={{color: "blue"}}
+                    onPress={() => {
+                      let url = new OEIS("english", false, true).getURLForList(number);
+                      Linking.openURL(url).catch((err) => console.error('An error occurred', err));
+                    }}>list</Text>;
+                  <Text
+                    style={{color: "blue"}}
+                    onPress={() => {
+                      let url = new OEIS("english", false, true).getURLForGraph(number);
+                      Linking.openURL(url).catch((err) => console.error('An error occurred', err));
+                    }}> graph</Text>;
+                  <Text
+                    style={{color: "blue"}}
+                    onPress={() => {
+                      let url = new OEIS("english", false, true).getURLForRefs(number);
+                      Linking.openURL(url).catch((err) => console.error('An error occurred', err));
+                    }}> refs</Text>;
+                  <Text
+                    style={{color: "blue"}}
+                    onPress={() => {
+                      let url = new OEIS("english", false, true).getURLForListen(number);
+                      Linking.openURL(url).catch((err) => console.error('An error occurred', err));
+                    }}> listen</Text>;
+                  <Text
+                    style={{color: "blue"}}
+                    onPress={() => {
+                      let url = new OEIS("english", false, true).getURLForHistory(number);
+                      Linking.openURL(url).catch((err) => console.error('An error occurred', err));
+                    }}> history</Text>;
+                  <Text
+                    style={{color: "blue"}}
+                    onPress={() => {
+                      let url = new OEIS("english", false, true).getURLForText(number);
+                      Linking.openURL(url).catch((err) => console.error('An error occurred', err));
+                    }}> text</Text>;
+                  <Text
+                    style={{color: "blue"}}
+                    onPress={() => {
+                      let url = new OEIS("english", false, true).getURLForInternalFormat(number);
+                      Linking.openURL(url).catch((err) => console.error('An error occurred', err));
+                    }}> internal format</Text>
+                </Text>
+              )
+            }
           ]
         },
         {
