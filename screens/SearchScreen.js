@@ -22,7 +22,6 @@ import { ListCell, ListCellSeparator } from '../components/ListCell';
 import ListPicker from '../components/ListPicker';
 import Colors from '../constants/Colors.js';
 import Styles from '../constants/Styles.js';
-import a from '../components/a';
 
 export default class SearchScreen extends React.Component {
   static navigationOptions = {
