@@ -365,24 +365,6 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderRadius: 10,
   },
-  /** This is meant to be applied to a button's container to make it look more pronounced. */
-  /** Don't forget to use pronounced border with this style! */
-  callToActionButtonContainer: {
-    backgroundColor: Colors.tintColor,
-    borderColor: Colors.darkerTintColor,
-    shadowColor: Colors.darkestTintColor,
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 0,
-    marginTop: 10,
-    marginBottom: 10
-  },
-  button: {
-    margin: 10,
-  },
   /** Don't forget to use pronounced border with this style! */
   boldTextInput: {
     fontSize: 18,
