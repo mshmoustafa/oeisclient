@@ -48,7 +48,6 @@ export default class SearchScreen extends React.Component {
     } else {
       body = this._searchResultsListView(this.state.searchResults.results, this.state.searchResults.count);
     }
-    let pagePicker = this._pagePicker();
     let modal1 = (
       <Modal
         animationType="fade"
@@ -93,7 +92,7 @@ export default class SearchScreen extends React.Component {
             <Button
               title="Cancel"
               onPress={() => {this._pagePickerDismissed();}} />
-            {pagePicker}
+            {this._pagePicker()}
           </View>
         </View>
       </Modal>
