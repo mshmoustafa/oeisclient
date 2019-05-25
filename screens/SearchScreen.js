@@ -216,17 +216,29 @@ export default class SearchScreen extends React.Component {
   _searchResultsListView = (searchResults, numberOfHits) => {
     console.log("in _searchResultsListView");
     console.log("    making the search results list view...");
-    if (searchResults === undefined || searchResults === null) {
-      console.log("    No search results!");
-      Alert.alert("No Results", "Your search returned no results.");
-      return;
+    let noResultsText = "No results";
+    let shouldShowListFooter = true;
+    if (numberOfHits !== null && numberOfHits !== undefined) {
+      if (numberOfHits === 0) {
+        // There are no search results so hide the page picker.
+        shouldShowListFooter = false;
+      }
+      if (numberOfHits > 0 && (searchResults === null || searchResults === undefined)) {
+        // There are too many search results so show an informative error message and hide the page picker.
+        noResultsText = "Too many results.\n\nYour search returned too many results (" + numberOfHits + " to be precise.)  Try refining your search.  If this happens frequently and the number of results is not very large, you can report a bug through the settings page.";
+        shouldShowListFooter = false;
+      }
+    } else {
+      // numberOfHits is null or undefined so hide the page picker.
+      shouldShowListFooter = false;
     }
     let list = (
       <FlatList
         data={searchResults}
         renderItem={this._searchResultCard}
         ItemSeparatorComponent={() => <ListCellSeparator />}
-        ListFooterComponent={this._searchFooter(numberOfHits)}
+        ListFooterComponent={shouldShowListFooter ? this._searchFooter(numberOfHits) : null}
+        ListEmptyComponent={<View style={styles.noResultsView}><Text style={styles.noResultsText}>{noResultsText}</Text></View>}
         keyExtractor={ (item) => item.number.toString() } />
     );
     return list;
@@ -385,5 +397,16 @@ const styles = StyleSheet.create({
   minorText: {
     fontSize: 15,
     color: "#666",
-  }
+  },
+  noResultsView: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  noResultsText: {
+    color: "#666",
+    textAlign: "center",
+  },
 });
