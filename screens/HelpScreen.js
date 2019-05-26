@@ -13,6 +13,7 @@ import Card from '../components/Card';
 import SimpleList from '../components/List';
 import Colors from '../constants/Colors.js';
 import Styles from '../constants/Styles.js';
+import LinkText from '../components/LinkText.js';
 
 export default class HelpScreen extends React.Component {
   static navigationOptions = {
@@ -73,21 +74,6 @@ export default class HelpScreen extends React.Component {
         items={listViewContents} />
     );
     return list;
-  }
-}
-
-class LinkText extends React.Component {
-  render() {
-    return (
-      <Text
-        {...this.props}
-        style={{color: "blue"}}
-        onPress={
-          () => {
-            Linking.openURL(this.props.href).catch((err) => console.error("An error occurred", err));
-          }
-        } />
-    );
   }
 }
 
