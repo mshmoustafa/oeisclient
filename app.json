@@ -9,7 +9,6 @@
       "android"
     ],
     "version": "4.0.0",
-    "build": "2",
     "icon": "./assets/images/icon.png",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -25,6 +24,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.muhammadsharifmoustafa.oeisclient",
+    "buildNumber": "2",
     },
     "android": {
       "package": "com.muhammadsharifmoustafa.oeisclient",
