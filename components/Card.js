@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         borderColor: "#ccc",
         borderWidth: 1,
         borderStyle: "solid",
-        borderRadius: 10,
+        borderRadius: 3,
     },
     separator: {
         borderTopColor: "#eee",

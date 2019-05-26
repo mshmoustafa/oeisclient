@@ -361,10 +361,10 @@ const styles = StyleSheet.create({
     borderColor: "#bbb",
     borderWidth: 1,
     borderStyle: "solid",
-    borderRadius: 10,
   },
   /** Don't forget to use pronounced border with this style! */
   boldTextInput: {
+    borderRadius: 3,
     fontSize: 18,
     height: 40,
     backgroundColor: "white",
