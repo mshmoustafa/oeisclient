@@ -1,1 +1,4 @@
 theme: jekyll-theme-minimal
+logo: icon.png
+title: OEIS Client
+description: An unofficial, open-source React Native/Expo mobile client for OEIS.org
