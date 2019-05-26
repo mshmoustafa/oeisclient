@@ -24,7 +24,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.muhammadsharifmoustafa.oeisclient",
-    "buildNumber": "2",
+    "buildNumber": "3",
     },
     "android": {
       "package": "com.muhammadsharifmoustafa.oeisclient",
