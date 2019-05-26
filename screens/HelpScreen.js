@@ -49,7 +49,7 @@ export default class HelpScreen extends React.Component {
       {
         key: 1,
         header: "Advanced Searching",
-        body: <Text>Searching in this app is very similar to searching on the OEIS website. For example, to search for the sequence with an ID of <Text style={Styles.monospace}>A000045</Text>, type <Text style={Styles.monospace}>id:A000045</Text> in the search bar and tap Search. For more info on searching, refer to the OEIS hints webpage.</Text>
+        body: <Text>Searching in this app is very similar to searching on the OEIS website. For example, to search for the sequence with an ID of <Text style={Styles.monospace}>A000045</Text>, type <Text style={Styles.monospace}>id:A000045</Text> in the search bar and tap Search. For more info on searching, refer to the <LinkText href="https://oeis.org/hints.html">OEIS hints webpage</LinkText>.</Text>
       },
       {
         key: 3,
