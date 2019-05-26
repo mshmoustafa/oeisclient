@@ -194,10 +194,6 @@ export default class SearchScreen extends React.Component {
         header: "Advanced Searching",
         body: <Text>Searching in this app is very similar to searching on the OEIS website. For example, to search for the sequence with an ID of <Text style={Styles.monospace}>A000045</Text>, type <Text style={Styles.monospace}>id:A000045</Text> in the search bar and tap Search. For more info on searching, refer to the OEIS hints webpage.</Text>
       },
-      {
-        key: 2,
-        header: "Getting Started",
-      },
     ];
     let list = (
       <SimpleList
