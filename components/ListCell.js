@@ -10,6 +10,7 @@ import {Text, View, StyleSheet, TouchableHighlight, TouchableNativeFeedback, Pla
 * @property body {string} The body text of the cell.
 */
 const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableHighlight
+
 class ListCell extends React.PureComponent {
   render() {
     let headerView;
@@ -48,10 +49,27 @@ class ListCell extends React.PureComponent {
       }
     }
     let cardStyles = this.props.disabled ? [styles.card, styles.disabled] : [styles.card];
-    return (
-      <View style={styles.cellSeparator}>
-        <Touchable
-          onPress={this.props.onPress}>
+
+    // On Android, TouchableNativeFeedback visually shows a touch regardless of whether onPress is null, which is very annoying and confusing for the user.
+    // The only way I know how to avoid this is by not including a TouchableNativeFeedback component in the tree, which results in this ugly if statement.
+    if (this.props.onPress) {
+      return (
+        <View style={styles.cellSeparator}>
+          <Touchable
+            onPress={this.props.onPress}>
+            <View style={cardStyles}>
+              <View>
+                {headerView}
+                {subHeaderView}
+                {bodyView}
+              </View>
+            </View>
+          </Touchable>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.cellSeparator}>
           <View style={cardStyles}>
             <View>
               {headerView}
@@ -59,9 +77,10 @@ class ListCell extends React.PureComponent {
               {bodyView}
             </View>
           </View>
-        </Touchable>
-      </View>
-    );
+        </View>
+      );
+
+    }
   }
 }
 
