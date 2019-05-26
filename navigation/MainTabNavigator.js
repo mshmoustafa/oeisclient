@@ -9,6 +9,7 @@ import DetailScreen from '../screens/DetailScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import HelpScreen from "../screens/HelpScreen";
+import LicensesScreen from "../screens/LicensesScreen";
 
 const SearchStack = createStackNavigator({
   Search: SearchScreen,
@@ -58,6 +59,7 @@ SettingsStack.navigationOptions = {
 
 const HelpStack = createStackNavigator({
   Help: HelpScreen,
+  Licenses: LicensesScreen,
 });
 
 HelpStack.navigationOptions = {
