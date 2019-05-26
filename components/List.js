@@ -37,7 +37,8 @@ export default class SimpleList extends React.Component {
           key={item.key}
           header={item.header}
           subHeader={item.subHeader}
-          body={item.body} />
+          body={item.body}
+          onPress={item.onPress} />
       )
     } else {
       return (
@@ -45,7 +46,8 @@ export default class SimpleList extends React.Component {
           key={item.key}
           header={item.header}
           subHeader={item.subHeader}
-          body={item.body} />
+          body={item.body}
+          onPress={item.onPress} />
       )
     }
   };
