@@ -103,7 +103,7 @@ export default class SearchScreen extends React.Component {
         <View style={{flex: 1}}>
           <View>
             <TextInput
-              style={[styles.pronouncedBorder, styles.boldTextInput]}
+              style={styles.boldTextInput}
               placeholder="Search the OEIS..."
               autoCapitalize="none"
               autoComplete="off"
@@ -357,13 +357,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#f9f9f9",
     // padding: 10
   },
-  pronouncedBorder: {
+  boldTextInput: {
     borderColor: "#bbb",
     borderWidth: 1,
     borderStyle: "solid",
-  },
-  /** Don't forget to use pronounced border with this style! */
-  boldTextInput: {
     borderRadius: 3,
     fontSize: 18,
     height: 40,
