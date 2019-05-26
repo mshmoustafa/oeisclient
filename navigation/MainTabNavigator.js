@@ -8,6 +8,7 @@ import SequenceScreen from '../screens/SequenceScreen';
 import DetailScreen from '../screens/DetailScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import HelpScreen from "../screens/HelpScreen";
 
 const SearchStack = createStackNavigator({
   Search: SearchScreen,
@@ -55,8 +56,23 @@ SettingsStack.navigationOptions = {
   ),
 };
 
+const HelpStack = createStackNavigator({
+  Help: HelpScreen,
+});
+
+HelpStack.navigationOptions = {
+  tabBarLabel: 'Help',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-help-circle' : 'md-help-circle'}
+    />
+  ),
+};
+
 export default createBottomTabNavigator({
   SearchStack,
   // HistoryStack,
-  SettingsStack,
+  // SettingsStack,
+  HelpStack,
 });
