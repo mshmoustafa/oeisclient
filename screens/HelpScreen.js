@@ -7,6 +7,7 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   FlatList,
+  Linking,
 } from 'react-native';
 import Card from '../components/Card';
 import SimpleList from '../components/List';
@@ -55,6 +56,21 @@ export default class HelpScreen extends React.Component {
         items={listViewContents} />
     );
     return list;
+  }
+}
+
+class LinkText extends React.Component {
+  render() {
+    return (
+      <Text
+        {...this.props}
+        style={{color: "blue"}}
+        onPress={
+          () => {
+            Linking.openURL(this.props.href).catch((err) => console.error("An error occurred", err));
+          }
+        } />
+    );
   }
 }
 
