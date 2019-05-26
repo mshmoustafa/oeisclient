@@ -37,7 +37,7 @@ export default class Card extends React.Component {
         const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableHighlight
 
         return (
-            <View style={[styles.pronouncedBorder, {marginBottom: 20, marginHorizontal: 20,}]}>
+            <View style={styles.cardContainer}>
                 <Touchable
                     onPress={this.props.onPress}>
                     <View style={styles.card}>
@@ -54,11 +54,13 @@ export default class Card extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    pronouncedBorder: {
+    cardContainer: {
         borderColor: "#ccc",
         borderWidth: 1,
         borderStyle: "solid",
         borderRadius: 3,
+        marginVertical: 10,
+        marginHorizontal: 20,
     },
     separator: {
         borderTopColor: "#eee",
