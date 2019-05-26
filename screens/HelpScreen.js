@@ -57,6 +57,11 @@ export default class HelpScreen extends React.Component {
         body: <Text>If you experience any bugs, need help, or have any feedback, let me know by sending an email to <LinkText href="mailto:mshm@protonmail.com">mshm@protonmail.com</LinkText> with "OEIS Client" in the subject. Alternatively, open an issue at the project's <LinkText href="https://github.com/mshmoustafa/oeisclient/issues">GitHub page</LinkText>.</Text>
       },
       {
+        key: 6,
+        header: "Privacy",
+        body: <Text>Read the privacy policy <LinkText href="https://mshmoustafa.github.io/oeisclient/PRIVACY.html">here</LinkText>.</Text>
+      },
+      {
         key: 2,
         header: "About",
         body: <Text>OEIS Client is an unofficial, open source client for OEIS.org. Neither this app nor the developer are affiliated with the Online Encyclopedia of Integers (<LinkText href="https://oeis.org">https://oeis.org</LinkText>). All of the sequences and related information are retrieved from the OEIS. OEIS and THE ON-LINE ENCYCLOPEDIA OF INTEGER SEQUENCES are trademarks of The OEIS Foundation Inc. More information can be found at <LinkText href="https://oeisf.org">https://oeisf.org</LinkText>.</Text>
