@@ -22,7 +22,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.muhammadsharifmoustafa.oeisclient",
+    },
+    "android": {
+      "package": "com.muhammadsharifmoustafa.oeisclient",
     }
   }
 }
