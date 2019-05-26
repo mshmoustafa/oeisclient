@@ -2,7 +2,7 @@
 
 ## An unofficial, open-source React Native/Expo mobile client for [OEIS.org](https://oeis.org).
 
-Search and browse the On-Line Encyclopedia of Integer Sequences (OEIS) easily from your iPhone, iPad, or iPod!
+Search and browse the On-Line Encyclopedia of Integer Sequences (OEIS) easily from your iPhone, iPad, iPod, or Android device!
 
 Features:
 - Easy-to-use app tailored for a mobile experience while retaining the essence of the OEIS.
