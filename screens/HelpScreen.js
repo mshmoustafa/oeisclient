@@ -53,7 +53,7 @@ export default class HelpScreen extends React.Component {
       {
         key: 3,
         header: "Bugs?",
-        body: <Text>If you experience any bugs, need help, or have any feedback, let me know by sending an email to <LinkText href="mailto:mshm@protonmail.com">mshm@protonmail.com</LinkText> with "OEIS Client" in the subject.</Text>
+        body: <Text>If you experience any bugs, need help, or have any feedback, let me know by sending an email to <LinkText href="mailto:mshm@protonmail.com">mshm@protonmail.com</LinkText> with "OEIS Client" in the subject. Alternatively, open an issue at the project's <LinkText href="https://github.com/mshmoustafa/oeisclient/issues">GitHub page</LinkText>.</Text>
       },
       {
         key: 2,
