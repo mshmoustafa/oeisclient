@@ -68,8 +68,8 @@ export default class HelpScreen extends React.Component {
       },
       {
         key: 5,
-        header: "Licenses",
-        body: <Text>Tap for open source licenses and attributions.</Text>,
+        header: "Licenses & Attributions",
+        body: <Text>Tap to view open source licenses and attributions.</Text>,
         onPress: () => {this.props.navigation.push("Licenses");},
       },
     ];
