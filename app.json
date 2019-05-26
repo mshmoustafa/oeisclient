@@ -27,6 +27,7 @@
     },
     "android": {
       "package": "com.muhammadsharifmoustafa.oeisclient",
+      "permissions": [],
     }
   }
 }
