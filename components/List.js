@@ -40,11 +40,13 @@ export default class SimpleList extends React.Component {
           body={item.body} />
       )
     } else {
-      <ListCell
-        key={item.key}
-        header={item.header}
-        subHeader={item.subHeader}
-        body={item.body} />
+      return (
+        <ListCell
+          key={item.key}
+          header={item.header}
+          subHeader={item.subHeader}
+          body={item.body} />
+      )
     }
   };
 
