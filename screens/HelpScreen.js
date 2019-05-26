@@ -37,6 +37,11 @@ export default class HelpScreen extends React.Component {
     let listViewContents = [
       {
         key: 0,
+        header: "What happened to the text size setting?",
+        body: "Text size is now controlled by your device's accessibility settings."
+      },
+      {
+        key: 4,
         header: "Getting Started",
         body: "To search the OEIS, enter a search query in the search bar."
       },
