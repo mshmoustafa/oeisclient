@@ -9,6 +9,7 @@
       "android"
     ],
     "version": "4.0.0",
+    "build": "2",
     "icon": "./assets/images/icon.png",
     "splash": {
       "image": "./assets/images/splash.png",
