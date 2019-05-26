@@ -1,5 +1,4 @@
-![OEIS Client Icon](./assets/images/icon.png)
-# OEIS client
+# <img src="./assets/images/icon.png" alt="OEIS Client icon" width="100" /> OEIS client
 
 ## An unofficial, open-source React Native/Expo mobile client for [OEIS.org](https://oeis.org).
 
