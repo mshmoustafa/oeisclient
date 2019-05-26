@@ -47,7 +47,8 @@ export default class HelpScreen extends React.Component {
       },
       {
         key: 2,
-        header: "Getting Started",
+        header: "About",
+        body: <Text>Neither this app nor the developer are affiliated with the Online Encyclopedia of Integers (<LinkText href="https://oeis.org">https://oeis.org</LinkText>). All of the sequences and related information are retrieved from the OEIS. OEIS and THE ON-LINE ENCYCLOPEDIA OF INTEGER SEQUENCES are trademarks of The OEIS Foundation Inc. More information can be found at <LinkText href="https://oeisf.org">https://oeisf.org</LinkText>.</Text>
       },
     ];
     let list = (
