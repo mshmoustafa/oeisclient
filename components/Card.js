@@ -39,6 +39,7 @@ export default class Card extends React.Component {
         return (
             <View style={styles.cardContainer}>
                 <Touchable
+                  style={{borderRadius: 3}}
                     onPress={this.props.onPress}>
                     <View style={styles.card}>
                         <View>
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     card: {
         padding: 20,
         backgroundColor: "white",
-        borderRadius: 10,
+        borderRadius: 3,
     },
     cardHeader: {
         fontSize: 22,
