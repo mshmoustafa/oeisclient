@@ -22,40 +22,35 @@ SearchStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-search` : 'md-search'}
-    />
+      name="search" />
   ),
 };
 
-const HistoryStack = createStackNavigator({
-  History: HistoryScreen,
-  Sequence: SequenceScreen,
-  Detail: DetailScreen,
-});
+// const HistoryStack = createStackNavigator({
+//   History: HistoryScreen,
+//   Sequence: SequenceScreen,
+//   Detail: DetailScreen,
+// });
 
-HistoryStack.navigationOptions = {
-  tabBarLabel: 'History',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-time' : 'md-time'}
-    />
-  ),
-};
+// HistoryStack.navigationOptions = {
+//   tabBarLabel: 'History',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       name="history" />
+//   ),
+// };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
+// const SettingsStack = createStackNavigator({
+//   Settings: SettingsScreen,
+// });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-cog' : 'md-cog'}
-    />
-  ),
-};
+// SettingsStack.navigationOptions = {
+//   tabBarLabel: 'Settings',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       name="settings" />
+//   ),
+// };
 
 const HelpStack = createStackNavigator({
   Help: HelpScreen,
@@ -67,8 +62,7 @@ HelpStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-help-circle' : 'md-help-circle'}
-    />
+      name="help" />
   ),
 };
 
