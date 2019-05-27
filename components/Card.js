@@ -30,10 +30,8 @@ export default class Card extends React.Component {
     let bodyView;
     if (this.props.body !== undefined) {
       let bodyStyle = [];
-      bodyStyle.push(styles.separator);
-      bodyStyle.push(styles.cardBody);
       bodyView = (
-        <View style={styles.separator}>
+        <View style={(headerView || subHeaderView) ? styles.separator : []}>
           <Text style={styles.cardBody}>
             {this.props.body}
           </Text>
