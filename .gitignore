@@ -30,6 +30,7 @@ build/
 local.properties
 *.iml
 android/app/build.gradle
+android/app/sharif_android_keystore.jks
 
 # node.js
 #
