@@ -17,7 +17,7 @@ import LinkText from '../components/LinkText.js';
 
 export default class LicensesScreen extends React.Component {
   static navigationOptions = {
-    title: "Licenses & Attributions"
+    title: "Legal"
   };
 
   state = {}
