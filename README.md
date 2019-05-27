@@ -1,6 +1,6 @@
 # <img src="./assets/images/icon.png" alt="OEIS Client icon" width="100" /> OEIS client
 
-## An unofficial, open-source React Native/Expo mobile client for [OEIS.org](https://oeis.org).
+## An unofficial, open-source React Native mobile client for [OEIS.org](https://oeis.org).
 
 Search and browse the On-Line Encyclopedia of Integer Sequences (OEIS) easily from your iPhone, iPad, iPod, or Android device!
 
