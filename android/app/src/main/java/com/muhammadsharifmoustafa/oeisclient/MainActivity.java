@@ -1,4 +1,4 @@
-package com.oeisclient;
+package com.muhammadsharifmoustafa.oeisclient;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

@@ -1,4 +1,4 @@
-package com.oeisclient;
+package com.muhammadsharifmoustafa.oeisclient;
 
 import android.app.Application;
 
