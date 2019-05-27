@@ -64,6 +64,7 @@ export default class HelpScreen extends React.Component {
       {
         key: 2,
         header: "About",
+        body: <Text>Version 4.0.0</Text>
       },
       {
         key: 5,
