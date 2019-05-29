@@ -78,7 +78,12 @@ export default class DetailScreen extends React.Component {
   }
 
   _renderItem = ({item}) => {
-    let bodyWithParsedLinks = Utility.convertLinksToTextLinks(item.body, this.linkTapped);
+    let bodyWithParsedLinks = [];
+    if (this.props.navigation.getParam("property") === "link") {
+      bodyWithParsedLinks = Utility.convertLinksToTextLinks(item.body, this.linkTapped);
+    } else {
+      bodyWithParsedLinks = [item.body];
+    }
     let bodyWithParsedLinksAndSequences = [];
     bodyWithParsedLinks.forEach(element => {
       if (typeof element === "string") {
