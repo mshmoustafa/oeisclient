@@ -19,7 +19,7 @@ Features:
 - Use advanced search techniques just like on the website (such as `id:A000045` to retrieve only the sequence with ID `A000045` or `keyword:more` to find sequences that need more terms).
 - Tap the Share button to share a link to the sequence.
 
-![Screenshot of OEIS Client](./screenshot.png)
+<div style="text-align: center"><img class="google-play-badge" alt='Screenshot of OEIS Client' src='./screenshot.png' style='width: 300px;' /></div>
 
 Neither this app nor the developer are affiliated with the Online Encyclopedia of Integers ([https://oeis.org](https://oeis.org)).  All of the sequences and related information are retrieved from the OEIS. OEIS and THE ON-LINE ENCYCLOPEDIA OF INTEGER SEQUENCES are trademarks of The OEIS Foundation Inc. More information can be found at [http://oeisf.org](http://oeisf.org).
 
