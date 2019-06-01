@@ -19,6 +19,12 @@ Features:
 
 <div style="text-align: center"><img class="google-play-badge" alt='Screenshot of OEIS Client' src='./screenshot.png' style='width: 300px;' /></div>
 
+---
+
 Neither this app nor the developer are affiliated with the Online Encyclopedia of Integers ([https://oeis.org](https://oeis.org)).  All of the sequences and related information are retrieved from the OEIS. OEIS and THE ON-LINE ENCYCLOPEDIA OF INTEGER SEQUENCES are trademarks of The OEIS Foundation Inc. More information can be found at [http://oeisf.org](http://oeisf.org).
+
+Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.
+
+Google Play and the Google Play logo are trademarks of Google Inc.
 
 [Privacy Policy](./PRIVACY.md)
