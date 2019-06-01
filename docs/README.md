@@ -1,7 +1,7 @@
 Search and browse the On-Line Encyclopedia of Integer Sequences (OEIS) easily from your iPhone, iPad, iPod, or Android device!
 
 <a href="https://itunes.apple.com/us/app/oeis-client/id1253817975?ls=1&mt=8">
-  <img src="images/landingPage/Download_on_the_App_Store_Badge_US-UK_135x40.svg" alt="Download on the App Store" />
+  <img src="Download_on_the_App_Store_Badge_US-UK_135x40.svg" alt="Download on the App Store" />
 </a>
 <a href='https://play.google.com/store/apps/details?id=com.muhammadsharifmoustafa.oeisclient&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
   <img class="google-play-badge" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' style='width: 155px;'
